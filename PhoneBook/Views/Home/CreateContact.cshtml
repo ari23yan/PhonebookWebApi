@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "CreateContact";
+}
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="row mt-3 shadow" style="border: 1px solid #ffffff96;color:#fff;height: 90px; border-radius: 21px;font-size: 50px;border-bottom: 6px solid #fff">
+    <div class="d-flex justify-content-between ">
+        <i onclick="window.location.href = '/home'" style="color:#fff;cursor: pointer;" class=" fa fa-address-book mt-2 mx-3" aria-hidden="true"></i>
+        <span class="">Create Contact</span>
+    </div>
+</div>
+<script>
+    var Pesan = "@((string)ViewBag.Status)";
+    if (Pesan != null && Pesan != '') {
+        Swal.fire(
+            'Created',
+            'Contact SuccssFully Created',
+        )
+        setTimeout(function () {
+            window.location.href = '/home';
+        }, 2000);
+    };
+</script>
+
+<div class="row d-flex justify-content-center align-items-center h-100 mt-3">
+    <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+            <div class="row g-0">
+                <div class="col-lg-12" style="background: #887ed433;">
+                    <div class="card-body p-md-5 mx-md-4">
+
+                        <div class="text-center">
+
+                            <h4 class="mt-1 mb-5 pb-1">You Can Create Your Contact</h4>
+                        </div>
+
+                        <form method="post" asp-action="CreateContact" asp-controller="Home">
+                            <p style="    font-size: 13px;">Please Enter Your Contact Information</p>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form2Example11" class="form-control"
+                                       name="FirstName" placeholder="First Name" />
+                                <label class="form-label" for="form2Example11">First Name</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input name="LastName" type="text" id="form2Example11" class="form-control"
+                                       placeholder="Last Name" />
+                                <label class="form-label" for="form2Example11">Last Name</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input name="PhoneNumber" maxlength="12" type="tel" id="form2Example11" class="form-control"
+                                       placeholder="Phone number" />
+                                <label class="form-label" for="form2Example11">Phone Number</label>
+
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <button type="submit" style="position: relative;margin-left: 49px;" class=" btn btn-outline-success">
+                                    Create Contact
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
