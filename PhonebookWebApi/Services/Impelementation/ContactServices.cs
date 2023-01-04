@@ -14,14 +14,14 @@ namespace PhonebookWebApi.Services.Impelementation
             _contactRepository = repository;
         }
 
-        public void CreateContact(ContactsDto dto)
+        public async Task CreateContact(ContactsDto dto)
         {
-            _contactRepository.CreateContact(dto);
+          await  _contactRepository.CreateContact(dto);
         }
 
-        public void DeleteContact(string phoneNumber)
+        public async Task DeleteContact(string phoneNumber)
         {
-            _contactRepository.DeleteContact(phoneNumber);
+          await  _contactRepository.DeleteContact(phoneNumber);
         }
 
         public async Task<List<Contact>> GetAllContacts()
