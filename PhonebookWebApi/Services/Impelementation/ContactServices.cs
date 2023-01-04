@@ -19,9 +19,9 @@ namespace PhonebookWebApi.Services.Impelementation
           await  _contactRepository.CreateContact(dto);
         }
 
-        public async Task DeleteContact(string phoneNumber)
+        public async Task<Contact> DeleteContact(string phoneNumber)
         {
-          await  _contactRepository.DeleteContact(phoneNumber);
+          return await  _contactRepository.DeleteContact(phoneNumber);
         }
 
         public async Task<List<Contact>> GetAllContacts()

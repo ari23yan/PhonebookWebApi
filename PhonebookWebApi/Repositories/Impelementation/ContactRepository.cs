@@ -18,6 +18,7 @@ namespace PhonebookWebApi.Repository.Impelementation
         }
         public async Task CreateContact(ContactsDto dto)
         {
+ 
             Contact contact = new Contact
             {
                 FirstName = dto.FirstName,
@@ -29,15 +30,10 @@ namespace PhonebookWebApi.Repository.Impelementation
              await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteContact(string phoneNumber)
+        public async Task<Contact> DeleteContact(string phoneNumber)
         {
-           var contact = await  _context.Contacts.FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
-            if(contact != null)
-            {
-                contact.IsDeleted = true;
-                await _contactGenerciRepository.UpdateAsync(contact);
-                var aaa = contact;
-            }
+           return  await  _context.Contacts.FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
+        
         }
 
         public async Task<List<Contact>> GetAllContacts()

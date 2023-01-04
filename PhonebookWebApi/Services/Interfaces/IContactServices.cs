@@ -6,7 +6,7 @@ namespace PhonebookWebApi.Services.Interfaces
     public interface IContactServices
     {
         Task CreateContact(ContactsDto dto);
-        Task DeleteContact(string phoneNumber);
+        Task<Contact> DeleteContact(string phoneNumber);
         Task<List<Contact>> GetAllContacts();
         Task UploadFile(IFormFile file);
 

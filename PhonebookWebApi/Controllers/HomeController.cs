@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PhonebookWebApi.Data.Dtos;
 using PhonebookWebApi.Data.Entities;
+using PhonebookWebApi.Repositories.Interfaces;
 using PhonebookWebApi.Services.Interfaces;
 
 namespace PhonebookWebApi.Controllers
@@ -11,19 +12,22 @@ namespace PhonebookWebApi.Controllers
     public class HomeController : Controller
     {
         private readonly IContactServices _contactServices;
-        public HomeController(IContactServices contactServices)
+        private readonly IGenerciRepository<Contact> _contactGenerciRepository;
+        public HomeController(IContactServices contactServices, IGenerciRepository<Contact> contactGenerciRepository)
         {
             _contactServices = contactServices;
+            _contactGenerciRepository = contactGenerciRepository;
+
         }
         [HttpGet]
         public async Task<List<Contact>> Index()
         {
-              return await _contactServices.GetAllContacts();
+            return await _contactServices.GetAllContacts();
         }
         [HttpPost]
-        public IActionResult CreateContact([FromBody]ContactsDto request)
+        public IActionResult CreateContact([FromBody] ContactsDto request)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _contactServices.CreateContact(request);
                 return Ok(true);
@@ -32,12 +36,18 @@ namespace PhonebookWebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteContact([FromBody] DeleteContactDto model)
+        public async Task<IActionResult> DeleteContact([FromBody] DeleteContactDto model)
         {
             if (ModelState.IsValid)
             {
-                _contactServices.DeleteContact(model.PhoneNumber);
-                return Ok();
+                var contact = await _contactServices.DeleteContact(model.PhoneNumber);
+                if (contact != null)
+                {
+                    contact.IsDeleted = true;
+                    await _contactGenerciRepository.UpdateAsync(contact);
+                    return Ok();
+                }
+                return BadRequest();
             }
             return BadRequest();
         }
