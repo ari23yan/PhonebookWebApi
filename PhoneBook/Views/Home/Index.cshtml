@@ -7,93 +7,96 @@
 
 <div class="row mt-3 shadow" style="border: 1px solid #ffffff96;color:#fff;height: 90px; border-radius: 21px;font-size: 50px;border-bottom: 6px solid #fff">
     <div class="d-flex justify-content-between ">
-		<i style="color:#fff;cursor: pointer;" class=" fa fa-address-book mt-2 mx-3"  aria-hidden="true"></i>
+        <i style="color:#fff;cursor: pointer;" class=" fa fa-address-book mt-2 mx-3" aria-hidden="true"></i>
         <span class="">Phone Book	</span>
-		<a href="/home/CreateContact" style="color:#fff">
-			<i  class="icon-hover fa fa-user-plus mt-2 mx-3" style="cursor: pointer;" aria-hidden="true"></i>
-		</a>
-	</div>
+        <a href="/home/CreateContact" style="color:#fff">
+            <i class="icon-hover fa fa-user-plus mt-2 mx-3" style="cursor: pointer;" aria-hidden="true"></i>
+        </a>
+    </div>
 
 </div>
+<script>
+    var Pesan = "@((string)ViewBag.Status)";
+    if (Pesan === "null") {
+        Swal.fire(
+            'Contact List is Empty ',
+            'Please Add Some Contacts',
+        )
+    };
+</script>
 
 <div class="container">
 
-	<div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
+        @{
 
-	
+            var Index = 0;
+            foreach (var item in Model)
+            {
+                Index++;
 
-		@{
-		
-			var Index = 0;
-			foreach (var item in Model)
-			{
-				Index++;
-			
-				 
-												<div class="screen mx-2 mt-3">
-									<i onclick="sendToBackEnd('@item.PhoneNumber')" class="fa fa-times mt-3" style="z-index: 90000;position: relative;FONT-SIZE: 46PX;COLOR: #cb3636ad;" aria-hidden="true"></i>
-											<div class="screen__content">
-													<div class="login__field">
-														<i class="fa fa-user-circle" aria-hidden="true"></i>
-																<label type="text" class="login__input">@item.FirstName</label>
-													</div>
-													<div class="login__field">
-																<i class="fa fa-user-circle" aria-hidden="true"></i>
-																<label type="text" class="login__input">@item.LastName</label>
+                <div class="screen mx-2 mt-3">
+                    <i onclick="sendToBackEnd('@item.PhoneNumber')" class="fa fa-times mt-3" style="z-index: 90000;position: relative;FONT-SIZE: 46PX;COLOR: #cb3636ad;" aria-hidden="true"></i>
+                    <div class="screen__content">
+                        <div class="login__field">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            <label type="text" class="login__input">@item.FirstName</label>
+                        </div>
+                        <div class="login__field">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            <label type="text" class="login__input">@item.LastName</label>
 
-													</div>
-															<div class="login__field">
-																<i class="fa fa-mobile" aria-hidden="true"></i>
-																<label type="text" class="login__input">@item.PhoneNumber</label>
-															</div>
-															<div class="profile-image d-flex justify-content-end mt-5" style="font-size: 150px;font-family: fantasy;color: white;">
-																#@Index
-															</div>
-											</div>
-											<div class="screen__background">
-												<span class="screen__background__shape screen__background__shape4"></span>
-												<span class="screen__background__shape screen__background__shape3"></span>		
-												<span class="screen__background__shape screen__background__shape2"></span>
-												<span class="screen__background__shape screen__background__shape1"></span>
-											</div>	
-											</div>
-	}
-}	
-	</div>
+                        </div>
+                        <div class="login__field">
+                            <i class="fa fa-mobile" aria-hidden="true"></i>
+                            <label type="text" class="login__input">@item.PhoneNumber</label>
+                        </div>
+                        <div class="profile-image d-flex justify-content-end mt-5" style="font-size: 150px;font-family: fantasy;color: white;">
+                            #@Index
+                        </div>
+                    </div>
+                    <div class="screen__background">
+                        <span class="screen__background__shape screen__background__shape4"></span>
+                        <span class="screen__background__shape screen__background__shape3"></span>
+                        <span class="screen__background__shape screen__background__shape2"></span>
+                        <span class="screen__background__shape screen__background__shape1"></span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
 </div>
 <div class=" content flex">
-  <p>By.TwentyThree | 2022 </p>
+    <p>By.TwentyThree | 2022 </p>
 </div>
 <script>
-	function sendToBackEnd(user)
-	{
-		let data = { phoneNumber: user};
-		fetch('/home/DeleteContact',
-				{
-					method: 'POST', // or 'PUT'
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					redirect:"follow",
-					body: JSON.stringify(data),
-				})
-				.then(response => response.text())
-				.then(result => {
-					let res = JSON.parse(result);
-					if (res == 200) 
-					{
-					Swal.fire(
-						'Deleted',
-						'Contact SuccssFully Deleted',
-					)
-					setTimeout(function () {
-						location.reload();
-					}, 2000);
-					}
-				}).catch(error => {
-					console.log('error', error)
-				});
-		}
+    function sendToBackEnd(user) {
+        let data = { phoneNumber: user };
+        fetch('/home/DeleteContact',
+            {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                redirect: "follow",
+                body: JSON.stringify(data),
+            })
+            .then(response => response.text())
+            .then(result => {
+                let res = JSON.parse(result);
+                if (res == 200) {
+                    Swal.fire(
+                        'Deleted',
+                        'Contact SuccssFully Deleted',
+                    )
+                    setTimeout(function () {
+                        location.reload();
+                    }, 2000);
+                }
+            }).catch(error => {
+                console.log('error', error)
+            });
+    }
 </script>
 
 

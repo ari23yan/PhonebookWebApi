@@ -20,9 +20,14 @@ namespace PhonebookWebApi.Controllers
 
         }
         [HttpGet]
-        public async Task<List<Contact>> Index()
+        public async Task<IActionResult> Index()
         {
-            return await _contactServices.GetAllContacts();
+            var contact = await _contactServices.GetAllContacts();
+            if(contact.Count <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(contact);
         }
         [HttpPost]
         public IActionResult CreateContact([FromBody] ContactsDto request)

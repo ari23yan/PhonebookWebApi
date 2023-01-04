@@ -25,8 +25,14 @@ namespace PhoneBook.Controllers
             request.AddHeader("Content-Type", "application/json");
             RestResponse response = client.ExecuteAsync(request).Result;
             var output = response.Content;
-                List<ContacsDto> result = JsonConvert.DeserializeObject<List<ContacsDto>>(output);
-                return View(result);
+            if(output.Contains("Bad Request"))
+            {
+                ViewBag.Status = "null";
+                List<ContacsDto> contacs = new List<ContacsDto>();
+                return View(contacs);
+            }
+            List<ContacsDto> result = JsonConvert.DeserializeObject<List<ContacsDto>>(output);
+            return View(result);
         }
         [HttpGet]
         public IActionResult CreateContact()
