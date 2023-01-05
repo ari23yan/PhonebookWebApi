@@ -1,0 +1,60 @@
+﻿@model PhoneBook.Models.ContacsDto
+
+@{
+    ViewData["Title"] = "GetContact";
+}
+
+<div class="row mt-3 shadow" style="border: 1px solid #ffffff96;color:#fff;height: 90px; border-radius: 21px;font-size: 50px;border-bottom: 6px solid #fff">
+    <div class="d-flex justify-content-between ">
+        <i style="color:#fff;cursor: pointer;" class=" fa fa-address-book mt-2 mx-3" aria-hidden="true"></i>
+        <span class="">Phone Book	</span>
+        <a href="/home/CreateContact" style="color:#fff">
+            <i class="icon-hover fa fa-user-plus mt-2 mx-3" style="cursor: pointer;" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+<div class="row d-flex justify-content-center align-items-center h-100 mt-3">
+    <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+            <div class="row g-0">
+                <div class="col-lg-12" style="background: #887ed433;">
+                    <div class="card-body p-md-5 mx-md-4">
+
+                        <div class="text-center">
+
+                            <h4 class="mt-1 mb-5 pb-1">You Can Edit Your Contact</h4>
+                        </div>
+                        <form method="post" asp-action="UpdateContact" asp-controller="Home">
+                            @*<p style="    font-size: 13px;">Please Enter Your Contact Information</p>*@
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form2Example11">First Name:</label>
+                                <input type="text" id="form2Example11" class="form-control"
+                                       name="FirstName" value="@Model.FirstName" placeholder="First Name" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form2Example11">Last Name:</label>
+
+                                <input name="LastName" type="text" id="form2Example11" class="form-control"
+                                      value="@Model.LastName" placeholder="Last Name" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form2Example11">Phone Number:</label>
+                                <input name="PhoneNumber" maxlength="12" value="@Model.PhoneNumber" type="tel" id="form2Example11" class="form-control"
+                                       placeholder="Phone number" />
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <button type="submit" style="position: relative;margin-left: 49px;" class=" btn btn-outline-success">
+                                    Edit Contact
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -40,5 +40,10 @@ namespace PhonebookWebApi.Repository.Impelementation
         {
             return await _context.Contacts.Where(a=>a.IsDeleted == false).ToListAsync();
         }
+
+        public async Task<Contact> GetContact(string mobile)
+        {
+            return await _context.Contacts.FirstOrDefaultAsync(u => u.PhoneNumber == mobile);
+        }
     }
 }

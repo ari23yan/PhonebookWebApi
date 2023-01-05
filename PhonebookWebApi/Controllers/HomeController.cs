@@ -40,7 +40,7 @@ namespace PhonebookWebApi.Controllers
             return BadRequest();
         }
 
-        [HttpPost]
+        [HttpDelete]
         public async Task<IActionResult> DeleteContact([FromBody] DeleteContactDto model)
         {
             if (ModelState.IsValid)
@@ -56,5 +56,33 @@ namespace PhonebookWebApi.Controllers
             }
             return BadRequest();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetContact([FromBody] DeleteContactDto mobile)
+        {
+            if(ModelState.IsValid)
+            {
+                var contact = await _contactServices.GetContacts(mobile.PhoneNumber);
+                return Ok(contact);
+            }
+            return BadRequest();
+        }
+
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] ContactsDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                var contact = await _contactServices.GetContacts(model.PhoneNumber);
+                contact.PhoneNumber = model.PhoneNumber;    
+                contact.FirstName = model.FirstName;    
+                contact.LastName = model.LastName;
+               await _contactGenerciRepository.UpdateAsync(contact);
+                return Ok(contact);
+            }
+            return BadRequest();
+        }
+
     }
 }

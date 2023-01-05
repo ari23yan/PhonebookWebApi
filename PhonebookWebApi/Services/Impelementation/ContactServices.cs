@@ -29,6 +29,11 @@ namespace PhonebookWebApi.Services.Impelementation
           return   await  _contactRepository.GetAllContacts();
         }
 
+        public async Task<Contact> GetContacts(string mobile)
+        {
+            return await _contactRepository.GetContact(mobile);
+        }
+
         public async Task UploadFile(IFormFile file)
         {
             string path = "";

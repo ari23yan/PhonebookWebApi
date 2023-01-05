@@ -9,6 +9,7 @@ namespace PhonebookWebApi.Repository.Interfaces
         Task CreateContact(ContactsDto dto);
         Task<Contact> DeleteContact(string phoneNumber);
         Task<List<Contact>> GetAllContacts();
+        Task<Contact>GetContact(string mobile);
 
     }
 }

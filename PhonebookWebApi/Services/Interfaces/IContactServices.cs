@@ -8,7 +8,7 @@ namespace PhonebookWebApi.Services.Interfaces
         Task CreateContact(ContactsDto dto);
         Task<Contact> DeleteContact(string phoneNumber);
         Task<List<Contact>> GetAllContacts();
-        Task UploadFile(IFormFile file);
+        Task<Contact> GetContacts(string mobile);
 
 
     }
