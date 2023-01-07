@@ -17,19 +17,6 @@ builder.Services.AddDbContext<PhoneBookWebApiDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefultConnection"));
 });
-
-builder.Services.AddCors(options =>
-{
-
-    options.AddDefaultPolicy(
-        policy =>
-        {
-            policy.AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-        });
-});
-
 builder.Services.AddScoped<IContactRepository,ContactRepository>();
 builder.Services.AddScoped<IContactServices, ContactServices>();
 builder.Services.AddScoped(typeof(IGenerciRepository<>), typeof(GenericRepository<>));
@@ -53,7 +40,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 app.UseAuthorization();
-app.UseCors();
 app.MapControllers();
 
 app.Run();

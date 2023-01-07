@@ -37,7 +37,7 @@
                 Index++;
 
                 <div class="screen mx-2 mt-3">
-                    <i onclick="sendToBackEnd('@item.PhoneNumber')" class="fa fa-times mt-3" style="z-index: 90000;position: relative;FONT-SIZE: 46PX;COLOR: #cb3636ad;" aria-hidden="true"></i>
+                    <i onclick="sendToBackEnd('@item.PhoneNumber')" class="fa fa-times mt-3" style="z-index: 1;position: relative;FONT-SIZE: 46PX;COLOR: #cb3636ad;" aria-hidden="true"></i>
                     <div class="screen__content">
                         <div class="login__field">
                             <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -53,8 +53,8 @@
                             <label type="text" class="login__input">@item.PhoneNumber</label>
                         </div>
 
-                        <a type="button" class="btn btn-primary" asp-action="GetContact" asp-controller="Home" asp-route-mobile="@item.PhoneNumber">Edit Contact</a>
-                        <div class="profile-image d-flex justify-content-end mt-5" style="font-size: 150px;font-family: fantasy;color: white;">
+                        <a class="btn btn-primary a-tags" asp-action="GetContact" asp-controller="Home" asp-route-mobile="@item.PhoneNumber">Edit Contact</a>
+                        <div class="profile-image d-flex justify-content-end" style="font-size: 150px;font-family: fantasy;color: white;">
                             #@Index
                         </div>
                     </div>
@@ -69,9 +69,13 @@
         }
     </div>
 </div>
-<div class=" content flex">
-    <p>By.TwentyThree | 2022 </p>
-</div>
+
+</footer>
+<footer id="footer">
+    <div id="footer-content">By.TwentyThree | 2022</div>
+</footer>
+
+
 <script>
       function sendToBackEnd(user) {
           let data = { phoneNumber: user };

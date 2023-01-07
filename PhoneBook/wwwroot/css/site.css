@@ -1,22 +1,22 @@
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Raleway, sans-serif;
-}
 
-body {
+html, body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+    height: 100%;
     background: linear-gradient(90deg, #C7C5F4, #776BCC);
+    box-sizing: border-box;
+    font-family: Raleway, sans-serif;
 }
 
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
 }
 
 .screen {
@@ -284,3 +284,21 @@ img {
     padding: 6px;
     border-radius: 20%;
 }
+.a-tags {
+    background-color: #654b81;
+    border-color: #654b81;
+}
+.a-tags:hover {
+        background-color: #827bc3;
+        border-color: #827bc3;
+ }
+
+
+#footer {
+    height: 50px; /* the footer's total height */
+}
+
+#footer-content {
+    height: 32px; /* height + top/bottom paddding + top/bottom border must add up to footer height */
+    padding: 8px;
+} 

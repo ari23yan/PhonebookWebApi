@@ -29,7 +29,7 @@ namespace PhonebookWebApi.Services.Impelementation
           return   await  _contactRepository.GetAllContacts();
         }
 
-        public async Task<Contact> GetContacts(string mobile)
+        public async Task<Contact> GetContact(string mobile)
         {
             return await _contactRepository.GetContact(mobile);
         }

@@ -65,7 +65,7 @@ namespace PhoneBook.Controllers
         {
             var url = "https://localhost:7255/api/Home/DeleteContact";
             var client = new RestClient(url);
-            var request = new RestRequest(url, Method.Post);
+            var request = new RestRequest(url, Method.Delete);
             request.AddHeader("Content-Type", "application/json");
             var body = new
             {
@@ -106,7 +106,7 @@ namespace PhoneBook.Controllers
             {
                 PhoneNumber = model.PhoneNumber,
                 FirstName = model.FirstName,
-                LastName = model.FirstName
+                LastName = model.LastName
             };
             var bodyy = JsonConvert.SerializeObject(body);
             request.AddBody(bodyy, "application/json");

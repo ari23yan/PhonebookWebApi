@@ -62,7 +62,7 @@ namespace PhonebookWebApi.Controllers
         {
             if(ModelState.IsValid)
             {
-                var contact = await _contactServices.GetContacts(mobile.PhoneNumber);
+                var contact = await _contactServices.GetContact(mobile.PhoneNumber);
                 return Ok(contact);
             }
             return BadRequest();
@@ -74,7 +74,7 @@ namespace PhonebookWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var contact = await _contactServices.GetContacts(model.PhoneNumber);
+                var contact = await _contactServices.GetContact(model.PhoneNumber);
                 contact.PhoneNumber = model.PhoneNumber;    
                 contact.FirstName = model.FirstName;    
                 contact.LastName = model.LastName;
